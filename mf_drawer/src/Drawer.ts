@@ -6,12 +6,11 @@ class Drawer extends HTMLElement {
   }
 
   connectedCallback() {
-
     this.innerHTML = `
       <nav class="drawer">
         <ul>
-          <li><a href="/">Vídeos</a></li>
-          <li><a href="/favorites">Favoritos</a></li>
+          <li><a href="#" id="page-movies">Vídeos</a></li>
+          <li><a href="#" id="page-favorites">Favoritos</a></li>
         </ul>
       </nav>
     `
