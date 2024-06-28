@@ -1,0 +1,23 @@
+.title {
+  color: var(--foreground-color);
+  font-size: 2rem;
+}
+
+.movie-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  min-height: 300px;
+}
+
+.movie-card {
+  background-color: var(--background-card);
+  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 12px, rgba(0, 0, 0, 0.12) 0px 0px 12px;
+  border-radius: 8px;
+}
+
+.movie-card-title {
+  font-size: 1rem;
+  color: var(--foreground-color);
+}

@@ -1,0 +1,16 @@
+.container-page {}
+
+.title {
+  color: var(--foreground-color);
+  font-size: 1rem;
+}
+
+.movies-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movies-card-title {
+  font-size: 1rem;
+}

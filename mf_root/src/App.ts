@@ -1,4 +1,6 @@
+import "./reset.css";
 import "./index.css";
+
 import { Routes } from "./Routes";
 
 import 'favorites/Favorites';
@@ -15,5 +17,6 @@ app.innerHTML = `
     </section>
   </div>
 `;
+
 
 Routes()

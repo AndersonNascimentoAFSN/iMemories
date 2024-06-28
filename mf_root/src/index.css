@@ -1,5 +1,17 @@
+:root {
+  --primary-color: #007aff;
+  --background-color: rgb(144, 202, 249);
+  --background-color-light: #ffffff;
+  --background-card: rgb(236, 244, 251);
+
+  --hover-background-color: rgb(100, 181, 246);
+  
+  --foreground-color: rgb(33, 33, 33);
+  --foreground-color-light:rgb(117, 117, 117);
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   padding: 0;
   box-sizing: border-box;
   margin: 0;
@@ -16,10 +28,10 @@ body {
 
 .content-page {
   flex: 1;
-  background-color: cyan;
+  padding: 20px;
+  /* background-color: cyan; */
 }
 
-.main-drawer {
-  height: 100vh;
-  background-color: red;
+.title {
+  margin-bottom: 1rem;
 }

@@ -1,6 +1,12 @@
+.main-drawer {
+  height: 100vh - 1px;
+  border: 1px solid var(--foreground-color-light);
+}
+
 .drawer {
   width: 250px;
   padding: 20px;
+  margin: auto;
 }
 
 ul {
@@ -8,7 +14,19 @@ ul {
   padding: 0;
 }
 
-a {
+.link {
   text-decoration: none;
-  color: black;
+  color: var(--foreground-color-light);
+  font-weight: 400;
+  font-size: 1.8rem;
+  font-weight: 1.2222;
+  transition: hover 2s ease-out;
+}
+
+.link:hover {
+  color: var(--hover-background-color);
+}
+
+.active {
+  color: var(--hover-background-color);
 }

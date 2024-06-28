@@ -1,3 +1,7 @@
+import { moviesComponent } from './components/movies-component'
+import './favorites.css'
+import { getMovies } from './services/movies'
+
 class Favorites extends HTMLElement {
   constructor() {
     super()
@@ -6,10 +10,17 @@ class Favorites extends HTMLElement {
   connectedCallback() {
 
     this.innerHTML = `
-      <div>
-        <h1>Favorites Page</h1>
+      <div class="container-page">
+        <h1 class="title">Favoritos</h1>
       </div>
     `
+
+    getMovies().then(movies => {
+      const container = this.querySelector('.container-page') as HTMLElement
+      if (movies) {
+        moviesComponent(movies, container)
+      }
+    })
   }
 }
 

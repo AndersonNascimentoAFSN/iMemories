@@ -1,0 +1,22 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "Redemption",
+      "url": "https://www.imdb.com/title/tt0111161/",
+      "isFavorite": false
+    },
+    {
+      "id": 2,
+      "name": "Shawshank",
+      "url": "https://www.imdb.com/title/tt0111161/",
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "name": "Redemption",
+      "url": "https://www.imdb.com/title/tt0111161/",
+      "isFavorite": false
+    }
+  ]
+}

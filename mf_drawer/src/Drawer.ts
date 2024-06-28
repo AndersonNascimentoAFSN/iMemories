@@ -6,11 +6,12 @@ class Drawer extends HTMLElement {
   }
 
   connectedCallback() {
+    const pathname = window.location.pathname
     this.innerHTML = `
       <nav class="drawer">
         <ul>
-          <li><a href="#" id="page-movies">Vídeos</a></li>
-          <li><a href="#" id="page-favorites">Favoritos</a></li>
+          <li><a href="#" id="page-movies" class='link'>Vídeos</a></li>
+          <li><a href="#" id="page-favorites" class='link'>Favoritos</a></li>
         </ul>
       </nav>
     `

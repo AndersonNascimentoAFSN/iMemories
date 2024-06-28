@@ -48,7 +48,6 @@ module.exports = (_, argv) => ({
         favorites: "mf_videos@http://localhost:8080/remoteEntry.js",
         movies: "mf_videos@http://localhost:8080/remoteEntry.js",
       },
-      exposes: {},
       shared: {
         ...deps,
       },
