@@ -1,2 +1,2 @@
-import './Favorites'
-import './Movies'
+// import './Favorites'
+// import './Movies'

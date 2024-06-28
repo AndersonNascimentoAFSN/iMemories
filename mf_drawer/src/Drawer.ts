@@ -10,8 +10,8 @@ class Drawer extends HTMLElement {
     this.innerHTML = `
       <nav class="drawer">
         <ul>
-          <li><a href="#" id="page-movies" class='link'>Vídeos</a></li>
-          <li><a href="#" id="page-favorites" class='link'>Favoritos</a></li>
+          <li><a href="/" id="page-movies" class='link'>Vídeos</a></li>
+          <li><a href="/favorites" id="page-favorites" class='link'>Favoritos</a></li>
         </ul>
       </nav>
     `

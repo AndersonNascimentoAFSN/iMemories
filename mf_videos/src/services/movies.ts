@@ -24,3 +24,17 @@ export async function getFavoritesMovies() {
     null
   }
 }
+
+export async function getMovieByName(name: string | undefined) {
+  const url = name ? `http://localhost:3333/movies?name=${name}` : `http://localhost:3333/movies`
+
+  try {
+    const movie: Promise<IMovie[]> = fetch(url).then(response => response.json()).then(data => {
+      return data
+    })
+
+    return movie
+  } catch {
+    null
+  }
+}

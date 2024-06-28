@@ -13,10 +13,9 @@ app.innerHTML = `
 <div class="container">
   <main-drawer class="main-drawer"></main-drawer>
     <section class="content-page" id="content-page">
-      <favorites-page></favorites-page>
+      <movies-page></movies-page>
     </section>
   </div>
 `;
-
 
 Routes()

@@ -38,12 +38,12 @@ export function Routes() {
 
   window.onload = () => {
     const containerPageDiv = document.getElementById('content-page') as HTMLElement;
-    containerPageDiv.innerHTML = routes['/'];
+    containerPageDiv.innerHTML = routes[window.location.pathname];
     window.history.pushState(
       {},
       '',
-      window.location.origin + '/'
+      window.location.origin + window.location.pathname
     );
-    Links.addActiveLink('page-movies');
+    Links.addActiveLink(window.location.pathname === '/' ? 'page-movies' : 'page-favorites');
   }
 }
