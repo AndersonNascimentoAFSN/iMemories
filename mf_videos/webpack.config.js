@@ -45,7 +45,6 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        globalsCss: "./src/globals.css",
         "./Favorites": "./src/Favorites",
         "./Movies": "./src/Movies",
       },
