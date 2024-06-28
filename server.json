@@ -2,19 +2,37 @@
   "movies": [
     {
       "id": 1,
-      "name": "Redemption",
+      "name": "Anderson",
       "url": "https://www.imdb.com/title/tt0111161/",
-      "isFavorite": false
+      "isFavorite": true
     },
     {
       "id": 2,
-      "name": "Shawshank",
+      "name": "Carol",
       "url": "https://www.imdb.com/title/tt0111161/",
       "isFavorite": true
     },
     {
       "id": 3,
-      "name": "Redemption",
+      "name": "Yanni",
+      "url": "https://www.imdb.com/title/tt0111161/",
+      "isFavorite": true
+    },
+    {
+      "id": 4,
+      "name": "Gabriela",
+      "url": "https://www.imdb.com/title/tt0111161/",
+      "isFavorite": true
+    },
+    {
+      "id": 5,
+      "name": "Bruno",
+      "url": "https://www.imdb.com/title/tt0111161/",
+      "isFavorite": false
+    },
+    {
+      "id": 6,
+      "name": "Thyago",
       "url": "https://www.imdb.com/title/tt0111161/",
       "isFavorite": false
     }

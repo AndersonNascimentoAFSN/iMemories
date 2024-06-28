@@ -1,2 +1,8 @@
 ###
 GET http://localhost:3333/movies
+
+###
+GET http://localhost:3333/movies?name=Carol
+###
+
+GET http://localhost:3333/movies?isFavorite=true
