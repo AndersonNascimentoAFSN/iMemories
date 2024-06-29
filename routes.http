@@ -3,6 +3,14 @@ GET http://localhost:3333/movies
 
 ###
 GET http://localhost:3333/movies?name=Carol
-###
 
+###
 GET http://localhost:3333/movies?isFavorite=true
+
+###
+PATCH http://localhost:3333/movies/1
+Content-Type: application/json
+
+{
+    "isFavorite": true
+}

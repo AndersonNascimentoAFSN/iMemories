@@ -10,15 +10,13 @@ class Favorites extends HTMLElement {
   connectedCallback() {
 
     this.innerHTML = `
-      <div class="container-page">
         <h1 class="title">Favoritos</h1>
-      </div>
+        <div class="movies-cards" id="movies-cards"></div>
     `
 
     getFavoritesMovies().then(movies => {
-      const container = this.querySelector('.container-page') as HTMLElement
       if (movies) {
-        moviesComponent(movies, container)
+        moviesComponent(movies)
       }
     })
   }

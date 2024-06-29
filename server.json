@@ -1,40 +1,40 @@
 {
   "movies": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Anderson",
       "url": "https://www.imdb.com/title/tt0111161/",
       "isFavorite": true
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Carol",
       "url": "https://www.imdb.com/title/tt0111161/",
       "isFavorite": true
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Yanni",
       "url": "https://www.imdb.com/title/tt0111161/",
       "isFavorite": true
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Gabriela",
       "url": "https://www.imdb.com/title/tt0111161/",
       "isFavorite": true
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Bruno",
       "url": "https://www.imdb.com/title/tt0111161/",
-      "isFavorite": false
+      "isFavorite": true
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Thyago",
       "url": "https://www.imdb.com/title/tt0111161/",
-      "isFavorite": false
+      "isFavorite": true
     }
   ]
 }

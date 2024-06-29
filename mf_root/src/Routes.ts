@@ -6,6 +6,8 @@ export function Routes() {
     '/favorites': '<favorites-page></favorites-page>',
   };
 
+  const containerPageDiv = document.getElementById('content-page') as HTMLElement;
+
   const onNavigate = (pathname: string) => {
     window.history.pushState(
       {},
@@ -15,7 +17,7 @@ export function Routes() {
     containerPageDiv.innerHTML = routes[pathname];
   };
 
-  const containerPageDiv = document.getElementById('content-page') as HTMLElement;
+
 
   const linkToMovies = document.getElementById('page-movies') as HTMLElement;
   const linkToFavorites = document.getElementById('page-favorites') as HTMLElement;
@@ -31,19 +33,17 @@ export function Routes() {
     Links.addActiveLink('page-favorites');
     onNavigate('/favorites');
   })
+  
+  window.onload = () => {
+    window.history.pushState(
+      {},
+      '',
+      window.location.origin + '/'
+    );
+    Links.addActiveLink('page-movies');
+  }
 
   window.onpopstate = () => {
     containerPageDiv.innerHTML = routes[window.location.pathname];
   };
-
-  window.onload = () => {
-    const containerPageDiv = document.getElementById('content-page') as HTMLElement;
-    containerPageDiv.innerHTML = routes[window.location.pathname];
-    window.history.pushState(
-      {},
-      '',
-      window.location.origin + window.location.pathname
-    );
-    Links.addActiveLink(window.location.pathname === '/' ? 'page-movies' : 'page-favorites');
-  }
 }

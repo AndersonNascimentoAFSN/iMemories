@@ -38,3 +38,40 @@ export async function getMovieByName(name: string | undefined) {
     null
   }
 }
+
+export async function getMovieById(id: string | undefined) {
+  try {
+    const movie: Promise<IMovie> = fetch(`http://localhost:3333/movies/${id}`).then(response => response.json()).then(data => {
+      return data
+    })
+
+    return movie
+  } catch {
+    null
+  }
+}
+
+export async function patchMovie(id: string, body: {
+  isFavorite?: boolean
+  name?: string
+  url?: string
+}) {
+  try {
+    const editedMovie: Promise<IMovie> = fetch(
+      `http://localhost:3333/movies/${id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      }
+    ).then(response => response.json()).then(data => {
+      return data
+    })
+
+    return editedMovie
+  } catch {
+    null
+  }
+}

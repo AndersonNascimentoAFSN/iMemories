@@ -1,7 +1,8 @@
 import { moviesComponent } from './components/movies-component'
 import './movies.css'
 
-import { getMovieByName, getMovies } from "./services/movies"
+import { getMovieById, getMovieByName, getMovies, patchMovie } from "./services/movies"
+import { IMovie } from './types/movie'
 import { debounce } from './utils/debounce'
 
 class Movies extends HTMLElement {
@@ -11,33 +12,27 @@ class Movies extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
-      <div class="container-page">
         <input type="text" id="search-video" class="search-video" placeholder="Pesquisar por nome">
-      </div>
+        <div class="movies-cards" id="movies-cards"></div>
     `
 
+    async function handleInput(event: Event) {
+      const target = event.target as HTMLInputElement
 
+      const movies = await getMovieByName(target.value)
 
-    // async function handleInput(event: Event) {
-    //   const target = event.target as HTMLInputElement
-      
-    //   const movies = await getMovieByName(target.value)
+      if (movies) {
+        moviesComponent(movies)
+      }
+    }
 
-    //   const container = this.querySelector('.container-page') as HTMLElement
-    //   console.log('moviesss', movies)
-    //   if (movies) {
-    //     moviesComponent(movies, container)
-    //   }
-    // }
-
-    // const searchVideo = this.querySelector('#search-video') as HTMLInputElement
-    // const debounceHandleInput = debounce(handleInput, 1000)
-    // searchVideo.addEventListener('input', debounceHandleInput)
+    const searchVideo = this.querySelector('#search-video') as HTMLInputElement
+    const debounceHandleInput = debounce(handleInput, 1000)
+    searchVideo.addEventListener('input', debounceHandleInput)
 
     getMovieByName('').then(movies => {
-      const container = this.querySelector('.container-page') as HTMLElement
       if (movies) {
-        moviesComponent(movies, container)
+        moviesComponent(movies)
       }
     })
   }
