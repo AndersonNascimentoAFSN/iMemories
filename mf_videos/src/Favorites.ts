@@ -18,6 +18,8 @@ class Favorites extends HTMLElement {
       if (movies) {
         moviesComponent(movies)
       }
+    }).catch(err => {
+      console.log(err)
     })
   }
 }

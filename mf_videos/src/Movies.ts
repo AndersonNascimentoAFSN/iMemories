@@ -1,8 +1,7 @@
 import { moviesComponent } from './components/movies-component'
 import './movies.css'
 
-import { getMovieById, getMovieByName, getMovies, patchMovie } from "./services/movies"
-import { IMovie } from './types/movie'
+import { getMovieByName } from "./services/movies"
 import { debounce } from './utils/debounce'
 
 class Movies extends HTMLElement {
@@ -34,6 +33,8 @@ class Movies extends HTMLElement {
       if (movies) {
         moviesComponent(movies)
       }
+    }).catch(err => {
+      console.log(err)
     })
   }
 }

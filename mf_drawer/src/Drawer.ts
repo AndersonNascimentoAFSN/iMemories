@@ -10,7 +10,7 @@ class Drawer extends HTMLElement {
     // const favoriteCount = isFavoriteCount ? parseInt(isFavoriteCount) : '0'
 
     this.innerHTML = `
-      <nav class="drawer">
+      <nav class="nav">
         <ul>
           <li><a href="/" id="page-movies" class='link'>Vídeos</a></li>
           <li>

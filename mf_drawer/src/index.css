@@ -26,7 +26,7 @@ body {
   width: 100vw;
 }
 
-.content-page {
+.main {
   flex: 1;
   padding: 20px;
   /* background-color: cyan; */

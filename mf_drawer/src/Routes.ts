@@ -2,11 +2,17 @@ import { Links } from './utils/links'
 
 export function Routes() {
   const routes = {
-    '/': '<movies-page></movies-page>',
-    '/favorites': '<favorites-page></favorites-page>',
+    '/': () => import('mf_videos/AppVideosPage').then(({ AppVideosPage }) => {
+      AppVideosPage(document.querySelector(`#main`))
+    }).catch((e) => {
+      console.log(e)
+    }),
+    '/favorites':  () => import('mf_videos/AppFavoritesPage').then(({ AppFavoritesPage }) => {
+      AppFavoritesPage(document.querySelector(`#main`))
+    }).catch((e) => {
+      console.log(e)
+    }),
   };
-
-  const containerPageDiv = document.getElementById('content-page') as HTMLElement;
 
   const onNavigate = (pathname: string) => {
     window.history.pushState(
@@ -14,7 +20,7 @@ export function Routes() {
       pathname,
       window.location.origin + pathname
     );
-    containerPageDiv.innerHTML = routes[pathname];
+    routes[pathname]()
   };
 
 
@@ -44,6 +50,6 @@ export function Routes() {
   }
 
   window.onpopstate = () => {
-    containerPageDiv.innerHTML = routes[window.location.pathname];
+    routes[window.location.pathname];
   };
 }
