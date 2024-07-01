@@ -1,20 +1,11 @@
 import "./reset.css";
 import "./index.css";
-import "./drawer.css";
+
+import './components/drawer/Drawer'
 
 export const AppDrawer = (element: HTMLElement) => {
   element.innerHTML = `
-    <nav class="nav">
-      <ul>
-        <li><a href="/" id="page-movies" class='link'>Vídeos</a></li>
-        <li>
-          <a href="/favorites" id="page-favorites" class='link'>
-            Favoritos
-            <span id="favorite-count"></span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <main-drawer></main-drawer>
   `;
 }
 
