@@ -1,4 +1,4 @@
-import './Favorites'
+import '../../components/favorites/Favorites'
 
 export const AppFavoritesPage = (element: HTMLElement) => {
   element.innerHTML = `

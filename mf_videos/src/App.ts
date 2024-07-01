@@ -1,8 +1,8 @@
-import './Favorites';
-import './Movies';
+import './components/favorites/Favorites';
+import './components/videos/Videos';
 
 const routes = {
-  '/': '<movies-page></movies-page>',
+  '/': '<videos-page></videos-page>',
   '/favorites': '<favorites-page></favorites-page>'
 }
 

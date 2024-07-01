@@ -1,6 +1,7 @@
-import { moviesComponent } from './components/movies-component'
+import { videosComponent } from '../videos-component'
+import { getFavoritesMovies } from '../../services/movies'
+
 import './favorites.css'
-import { getFavoritesMovies } from './services/movies'
 
 class Favorites extends HTMLElement {
   constructor() {
@@ -11,12 +12,12 @@ class Favorites extends HTMLElement {
 
     this.innerHTML = `
         <h1 class="title">Favoritos</h1>
-        <div class="movies-cards" id="movies-cards"></div>
+        <div class="videos-cards" id="videos-cards"></div>
     `
 
-    getFavoritesMovies().then(movies => {
-      if (movies) {
-        moviesComponent(movies)
+    getFavoritesMovies().then(videos => {
+      if (videos) {
+        videosComponent(videos)
       }
     }).catch(err => {
       console.log(err)

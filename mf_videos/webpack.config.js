@@ -46,8 +46,8 @@ module.exports = (_, argv) => ({
       remotes: {},
       exposes: {
         './App': './src/App.ts',
-        './AppVideosPage': './src/AppVideosPage.ts',
-        './AppFavoritesPage': './src/AppFavoritesPage.ts',
+        './AppVideosPage': './src/pages/app-videos-page/AppVideosPage.ts',
+        './AppFavoritesPage': './src/pages/app-favorites-page/AppFavoritesPage.ts',
       },
       shared: {
         ...deps,

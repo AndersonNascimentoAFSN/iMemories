@@ -1,4 +1,4 @@
-import { IMovie } from "../types/movie";
+import { IMovie } from "../types/video";
 
 
 export async function getMovies() {
