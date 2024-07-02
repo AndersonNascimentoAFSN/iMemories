@@ -9,26 +9,28 @@ import { type Youtube } from './types/youtube';
 import { type Video } from './types/video';
 
 const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
 };
 
 let connection: mysql.Connection;
 
-const server = fastify({ logger: true });
+const server = fastify({ logger: process.env.NODE_ENV !== 'production' });
 server.register(cors, {
   methods: ['GET'],
 })
 
-server.register(async (fastify, opts, done) => {
-  connection = await mysql.createConnection(dbConfig);
-  fastify.decorate('mysql', connection);
-  done();
-});
+// server.register(async (fastify, opts, done) => {
+//   connection = await mysql.createConnection({
+//     ...dbConfig,
+//   });
+//   fastify.decorate('mysql', connection);
+//   done();
+// });
 
-const port = Number(process.env.API_BFF_PORT) || 3333;
+const port = Number(process.env.API_BFF_PORT) || 3003;
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
 if (!YOUTUBE_API_KEY) {
@@ -55,43 +57,43 @@ server.get('/videos', async (request, reply): Promise<Video[] | []> => {
   }))
 })
 
-server.get('/favorites', async (request, reply) => {
-  const [rows] = await connection.query('SELECT * FROM favorites');
+// server.get('/favorites', async (request, reply) => {
+//   const [rows] = await connection.query('SELECT * FROM favorites');
 
-  return rows;
-})
+//   return rows;
+// })
 
-server.get('/favorites/:id', async (request, reply) => {
-  const params = request.params as any;
+// server.get('/favorites/:id', async (request, reply) => {
+//   const params = request.params as any;
 
-  const [rows] = await connection.query('SELECT * FROM favorites WHERE id = ?', [params?.id]);
+//   const [rows] = await connection.query('SELECT * FROM favorites WHERE id = ?', [params?.id]);
 
-  return rows
-})
+//   return rows
+// })
 
-server.post('/favorites', async (request, reply) => {
-  const video = request.body as Video;
+// server.post('/favorites', async (request, reply) => {
+//   const video = request.body as Video;
 
-  const [result] = await connection.execute('INSERT INTO favorites (videoId, title, thumbnail) VALUES (?, ?, ?)', [video.videoId, video.title, video.thumbnail]);
+//   const [result] = await connection.execute('INSERT INTO favorites (videoId, title, thumbnail) VALUES (?, ?, ?)', [video.videoId, video.title, video.thumbnail]);
 
-  return {
-    success: true,
-    result: result
-  };
-})
+//   return {
+//     success: true,
+//     result: result
+//   };
+// })
 
-server.delete('/favorites/:id', async (request, reply) => {
-  const params = request.params as any;
+// server.delete('/favorites/:id', async (request, reply) => {
+//   const params = request.params as any;
 
-  const [result] = await connection.execute('DELETE FROM favorites WHERE id = ?', [params?.id]);
+//   const [result] = await connection.execute('DELETE FROM favorites WHERE id = ?', [params?.id]);
 
-  return {
-    success: true,
-    result: result
-  };
-})
+//   return {
+//     success: true,
+//     result: result
+//   };
+// })
 
-server.listen({ port: port }, (err, address) => {
+server.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
   if (err) {
     console.error(err)
     process.exit(1)

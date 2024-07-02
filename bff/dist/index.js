@@ -37,26 +37,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fastify_1 = __importDefault(require("fastify"));
 const cors_1 = __importDefault(require("@fastify/cors"));
-const promise_1 = __importDefault(require("mysql2/promise"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const dbConfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 };
 let connection;
-// { logger: true }
-const server = (0, fastify_1.default)();
+const server = (0, fastify_1.default)({ logger: true });
 server.register(cors_1.default, {
     methods: ['GET'],
 });
-server.register((fastify, opts, done) => __awaiter(void 0, void 0, void 0, function* () {
-    connection = yield promise_1.default.createConnection(dbConfig);
-    fastify.decorate('mysql', connection);
-    done();
-}));
+// server.register(async (fastify, opts, done) => {
+//   connection = await mysql.createConnection({
+//     ...dbConfig,
+//   });
+//   fastify.decorate('mysql', connection);
+//   done();
+// });
 const port = Number(process.env.API_BFF_PORT) || 3333;
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 if (!YOUTUBE_API_KEY) {
@@ -76,23 +76,23 @@ server.get('/videos', (request, reply) => __awaiter(void 0, void 0, void 0, func
         thumbnail: video.snippet.thumbnails.default.url
     }));
 }));
-server.get('/favorites', (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield connection.query('SELECT * FROM favorites');
-    return rows;
-}));
-server.get('/favorites/:id', (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
-    const params = request.params;
-    const [rows] = yield connection.query('SELECT * FROM favorites WHERE id = ?', [params === null || params === void 0 ? void 0 : params.id]);
-    return rows;
-}));
-server.post('/favorites', (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
-    const video = request.body;
-    const [result] = yield connection.execute('INSERT INTO favorites (videoId, title, thumbnail) VALUES (?, ?, ?)', [video.videoId, video.title, video.thumbnail]);
-    return {
-        success: true,
-        result: result
-    };
-}));
+// server.get('/favorites', async (request, reply) => {
+//   const [rows] = await connection.query('SELECT * FROM favorites');
+//   return rows;
+// })
+// server.get('/favorites/:id', async (request, reply) => {
+//   const params = request.params as any;
+//   const [rows] = await connection.query('SELECT * FROM favorites WHERE id = ?', [params?.id]);
+//   return rows
+// })
+// server.post('/favorites', async (request, reply) => {
+//   const video = request.body as Video;
+//   const [result] = await connection.execute('INSERT INTO favorites (videoId, title, thumbnail) VALUES (?, ?, ?)', [video.videoId, video.title, video.thumbnail]);
+//   return {
+//     success: true,
+//     result: result
+//   };
+// })
 server.delete('/favorites/:id', (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
     const params = request.params;
     const [result] = yield connection.execute('DELETE FROM favorites WHERE id = ?', [params === null || params === void 0 ? void 0 : params.id]);

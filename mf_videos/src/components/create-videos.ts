@@ -24,7 +24,7 @@ export async function createVideos(
         id="favorite-video-button"
       >
         <span></span>
-        <span>☆</span>
+        <span>⭐☆</span>
       </button>
     `
     videosCards.appendChild(videoCard)

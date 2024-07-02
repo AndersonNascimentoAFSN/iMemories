@@ -1,0 +1,85 @@
+services:
+  db:
+    image: mysql:8.0.30-debian
+    container_name: imemories-bff
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senha@123
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./.docker/mysql:/docker-entrypoint-initdb.d
+    cap_add:
+      - SYS_NICE
+    privileged: true
+    networks:
+      - imemories-network
+
+  api:
+    container_name: bff
+    build: ./bff
+    restart: always
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      YOUTUBE_API_KEY: AIzaSyCW_neUSYaf0gUZojgAnXVQPSbzIP_nauU
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: senha@123
+      MYSQL_DATABASE: videos
+    networks:
+      - imemories-network
+    ports:
+      - "3333:3003"
+    expose:
+      - 3003
+    # volumes:
+    # - ./bff/dist:/app
+  
+  # nxgin:
+  #     image: nginx:latest
+  #     ports:
+  #     - "3003:3333"
+  #     volumes:
+  #       - ./nginx/bff/nginx.conf:/etc/nginx/nginx.conf
+  #     depends_on:
+  #       - api
+  #     networks:
+  #     - imemories-network
+
+  mf_drawer:
+    container_name: mf_drawer
+    build: ./mf_drawer
+    restart: always
+    ports:
+      - 3000:80
+    # depends_on:
+    #   - api
+    environment:
+      APP_HOST: 3000
+      APP_MF_VIDEOS: mf_videos@http://localhost:3001/remoteEntry.js
+    networks:
+      - imemories-network
+
+  mf_videos:
+    container_name: mf_videos
+    build: ./mf_videos
+    restart: always
+    ports:
+      - 3001:80
+    # depends_on:
+    #   - api
+    environment:
+      APP_HOST: 3001
+      APP_MF_VIDEOS: mf_drawer@http://localhost:3000/remoteEntry.js
+    networks:
+      - imemories-network
+
+volumes:
+  db-data:
+
+networks:
+  imemories-network:
+    driver: bridge

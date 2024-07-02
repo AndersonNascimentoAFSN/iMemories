@@ -1,10 +1,11 @@
 {
   "name": "bff",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev src/index.ts"
   },
   "keywords": [],
   "author": "Anderson Nascimento",
@@ -24,6 +25,7 @@
     "@types/fastify-cors": "^2.1.0",
     "@types/node": "^20.14.9",
     "@types/uuid": "^10.0.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.2"
   }
 }
