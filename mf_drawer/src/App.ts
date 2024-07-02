@@ -13,8 +13,8 @@ AppDrawer(document.getElementById("drawer") as HTMLElement);
 
 import('mf_videos/AppVideosPage').then(({ AppVideosPage }) => {
   AppVideosPage(document.querySelector(`#main`))
-}).catch((e) => {
-  console.log(e)
+}).catch((error) => {
+  console.error(error)
 })
 
 import { Routes } from "./Routes";

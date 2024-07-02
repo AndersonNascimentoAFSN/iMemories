@@ -6,9 +6,6 @@ class Drawer extends HTMLElement {
   }
 
   connectedCallback() {
-    // const isFavoriteCount = window.localStorage.getItem('@iMemories-isFavorite-count')
-    // const favoriteCount = isFavoriteCount ? parseInt(isFavoriteCount) : '0'
-
     this.innerHTML = `
       <nav class="nav">
         <ul>
