@@ -1,6 +1,7 @@
 export interface IVideo {
-  id: number
-  name: string
-  url: string
-  isFavorite: boolean
+  id: string
+  videoId: string
+  title: string
+  thumbnail: string
+  created_at: string
 }

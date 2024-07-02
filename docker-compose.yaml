@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0.30-debian
+    container_name: imemories-bff
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - pgdata:/var/lib/postgresql/bff-db
+
+volumes:
+  pgdata:
+    driver: local

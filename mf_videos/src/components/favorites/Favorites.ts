@@ -1,5 +1,5 @@
-import { videosComponent } from '../videos-component'
-import { getFavoritesMovies } from '../../services/movies'
+import { createVideos } from '../create-videos'
+import { getFavoritesVideos } from '../../services/videos'
 
 import './favorites.css'
 
@@ -15,9 +15,9 @@ class Favorites extends HTMLElement {
         <div class="videos-cards" id="videos-cards"></div>
     `
 
-    getFavoritesMovies().then(videos => {
+    getFavoritesVideos().then(videos => {
       if (videos) {
-        videosComponent(videos)
+        createVideos(videos)
       }
     }).catch(err => {
       console.log(err)

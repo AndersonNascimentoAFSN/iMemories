@@ -1,7 +1,7 @@
-import { videosComponent } from '../videos-component'
+import { createVideos } from '../create-videos'
 import './videos.css'
 
-import { getMovieByName } from "../../services/movies"
+import { getVideos } from "../../services/videos"
 import { debounce } from '../../utils/debounce'
 
 class Videos extends HTMLElement {
@@ -9,7 +9,7 @@ class Videos extends HTMLElement {
     super()
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.innerHTML = `
         <input type="text" id="search-video" class="search-video" placeholder="Pesquisar por nome">
         <div class="videos-cards" id="videos-cards"></div>
@@ -18,10 +18,10 @@ class Videos extends HTMLElement {
     async function handleInput(event: Event) {
       const target = event.target as HTMLInputElement
 
-      const videos = await getMovieByName(target.value)
+      const videos = await getVideos({ name: target.value })
 
       if (videos) {
-        videosComponent(videos)
+        createVideos(videos)
       }
     }
 
@@ -29,12 +29,10 @@ class Videos extends HTMLElement {
     const debounceHandleInput = debounce(handleInput, 1000)
     searchVideo.addEventListener('input', debounceHandleInput)
 
-    getMovieByName('').then(videos => {
+    getVideos().then(videos => {
       if (videos) {
-        videosComponent(videos)
+        createVideos(videos)
       }
-    }).catch(err => {
-      console.log(err)
     })
   }
 }
