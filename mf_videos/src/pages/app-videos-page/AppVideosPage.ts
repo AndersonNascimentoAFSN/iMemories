@@ -1,4 +1,4 @@
-import '../../components/videos/Videos'
+import '../../components/molecules/videos/Videos'
 
 export const AppVideosPage = (element: HTMLElement) => {
   element.innerHTML = `

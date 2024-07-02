@@ -1,5 +1,5 @@
-import './components/favorites/Favorites';
-import './components/videos/Videos';
+import './components/molecules/favorites/Favorites';
+import './components/molecules/videos/Videos';
 
 const routes = {
   '/': '<videos-page></videos-page>',

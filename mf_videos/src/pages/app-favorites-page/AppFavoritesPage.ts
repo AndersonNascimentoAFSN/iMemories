@@ -1,4 +1,4 @@
-import '../../components/favorites/Favorites'
+import '../../components/molecules/favorites/Favorites'
 
 export const AppFavoritesPage = (element: HTMLElement) => {
   element.innerHTML = `
