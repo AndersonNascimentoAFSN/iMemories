@@ -2,6 +2,7 @@ import "./reset.css";
 import "./index.css";
 
 import './components/drawer/Drawer'
+import { Routes } from "./Routes";
 
 export const AppDrawer = (element: HTMLElement) => {
   element.innerHTML = `
@@ -10,13 +11,5 @@ export const AppDrawer = (element: HTMLElement) => {
 }
 
 AppDrawer(document.getElementById("drawer") as HTMLElement);
-
-import('mf_videos/AppVideosPage').then(({ AppVideosPage }) => {
-  AppVideosPage(document.querySelector(`#main`))
-}).catch((error) => {
-  console.error(error)
-})
-
-import { Routes } from "./Routes";
 
 Routes()

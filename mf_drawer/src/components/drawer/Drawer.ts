@@ -22,4 +22,8 @@ class Drawer extends HTMLElement {
   }
 }
 
-customElements.define('main-drawer', Drawer)
+if (!customElements.get('main-drawer')) {
+  customElements.define('main-drawer', Drawer);
+}
+
+export default Drawer;

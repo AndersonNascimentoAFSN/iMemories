@@ -1,17 +1,14 @@
 import { Links } from './utils/links'
+import { loadingModules } from './utils/loading-modules';
 
-export function Routes() {
+export async function Routes() {
+  const modules = await loadingModules()
+
+  modules?.AppVideosPage(document.querySelector(`#main`))
+
   const routes = {
-    '/': () => import('mf_videos/AppVideosPage').then(({ AppVideosPage }) => {
-      AppVideosPage(document.querySelector(`#main`))
-    }).catch((error) => {
-      console.error(error)
-    }),
-    '/favorites':  () => import('mf_videos/AppFavoritesPage').then(({ AppFavoritesPage }) => {
-      AppFavoritesPage(document.querySelector(`#main`))
-    }).catch((error) => {
-      console.error(error)
-    }),
+    '/': () => modules?.AppVideosPage(document.querySelector(`#main`)),
+    '/favorites': () => modules?.AppFavoritesPage(document.querySelector(`#main`)),
   };
 
   const onNavigate = (pathname: string) => {
@@ -37,7 +34,7 @@ export function Routes() {
     Links.addActiveLink('page-favorites');
     onNavigate('/favorites');
   })
-  
+
   window.onload = () => {
     window.history.pushState(
       {},
