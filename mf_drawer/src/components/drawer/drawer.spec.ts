@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom';
-import { screen } from '@testing-library/dom';
 import { describe, expect, it, beforeAll } from 'vitest'
 
 import Drawer from './Drawer';
@@ -14,15 +13,17 @@ describe('Drawer Component', () => {
   it('should render the navigation links', () => {
     document.body.innerHTML = `<main-drawer></main-drawer>`;
 
-    const drawer = document.querySelector('main-drawer');
+    const drawerShadowRoot = document.querySelector('main-drawer')?.shadowRoot;
+    const drawer = drawerShadowRoot?.querySelector('.drawer')
+    const links = drawerShadowRoot?.querySelectorAll('.link')
+
     expect(drawer)?.toBeInTheDocument();
-    const links = drawer?.querySelectorAll('.link');
     const linkToMovies = links?.item(0);
     const linkToFavorite = links?.item(1);
 
     expect(links).toHaveLength(2);
-    expect(screen.getByText('Vídeos')).toBeInTheDocument();
-    expect(screen.getByText('Favoritos')).toBeInTheDocument();
+    expect(linkToMovies?.textContent?.trim()).toBe('Vídeos');
+    expect(linkToFavorite?.textContent?.trim()).toBe('Favoritos');
     expect(linkToMovies).toHaveAttribute('href', '/');
     expect(linkToMovies).toHaveAttribute('id', 'page-movies');
     expect(linkToFavorite).toHaveAttribute('href', '/favorites');
@@ -30,7 +31,8 @@ describe('Drawer Component', () => {
   });
 
   it('should have a favorite count span', () => {
-    const favoriteCountSpan = document.querySelector('#favorite-count');
+    const drawerShadowRoot = document.querySelector('main-drawer')?.shadowRoot;
+    const favoriteCountSpan = drawerShadowRoot?.querySelector('#favorite-count')
     expect(favoriteCountSpan).toBeInTheDocument();
   });
 });
