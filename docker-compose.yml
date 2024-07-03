@@ -1,34 +1,11 @@
 services:
-  db:
-    image: mysql:8.0.30-debian
-    container_name: imemories-bff
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: senha@123
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-      - ./.docker/mysql:/docker-entrypoint-initdb.d
-    cap_add:
-      - SYS_NICE
-    privileged: true
-    networks:
-      - imemories-network
-
   api:
     container_name: bff
     build: ./bff
     restart: always
-    depends_on:
-      - db
     environment:
       NODE_ENV: production
       YOUTUBE_API_KEY: AIzaSyCW_neUSYaf0gUZojgAnXVQPSbzIP_nauU
-      MYSQL_HOST: db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: senha@123
-      MYSQL_DATABASE: videos
     networks:
       - imemories-network
     ports:
