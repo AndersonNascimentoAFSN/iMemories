@@ -1,97 +1,26 @@
 import fastify from 'fastify'
 import cors from '@fastify/cors'
-import mysql from 'mysql2/promise';
 
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { type Youtube } from './types/youtube';
 import { type Video } from './types/video';
-
-const dbConfig = {
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE
-};
-
-let connection: mysql.Connection;
+import { youtubeApi } from './lib/youtube';
 
 const server = fastify({ logger: process.env.NODE_ENV !== 'production' });
 server.register(cors, {
   methods: ['GET'],
 })
 
-// server.register(async (fastify, opts, done) => {
-//   connection = await mysql.createConnection({
-//     ...dbConfig,
-//   });
-//   fastify.decorate('mysql', connection);
-//   done();
-// });
-
 const port = Number(process.env.API_BFF_PORT) || 3003;
-const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-
-if (!YOUTUBE_API_KEY) {
-  throw new Error('YOUTUBE_API_KEY is not set')
-}
 
 server.get('/videos', async (request, reply): Promise<Video[] | []> => {
   const query = request.query as any
 
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query?.q ? query?.q : ''}&maxResults=${query.maxResults ? query.maxResults : 5}&type=video&key=${YOUTUBE_API_KEY}`
+  const videosYoutube = await youtubeApi(query)
 
-  const response = await fetch(url)
-
-  if (!response.ok) {
-    return []
-  }
-
-  const data: Youtube = await response.json()
-
-  return data.items.map((video) => ({
-    videoId: video.id.videoId,
-    title: video.snippet.title,
-    thumbnail: video.snippet.thumbnails.default.url
-  }))
+  return videosYoutube
 })
-
-// server.get('/favorites', async (request, reply) => {
-//   const [rows] = await connection.query('SELECT * FROM favorites');
-
-//   return rows;
-// })
-
-// server.get('/favorites/:id', async (request, reply) => {
-//   const params = request.params as any;
-
-//   const [rows] = await connection.query('SELECT * FROM favorites WHERE id = ?', [params?.id]);
-
-//   return rows
-// })
-
-// server.post('/favorites', async (request, reply) => {
-//   const video = request.body as Video;
-
-//   const [result] = await connection.execute('INSERT INTO favorites (videoId, title, thumbnail) VALUES (?, ?, ?)', [video.videoId, video.title, video.thumbnail]);
-
-//   return {
-//     success: true,
-//     result: result
-//   };
-// })
-
-// server.delete('/favorites/:id', async (request, reply) => {
-//   const params = request.params as any;
-
-//   const [result] = await connection.execute('DELETE FROM favorites WHERE id = ?', [params?.id]);
-
-//   return {
-//     success: true,
-//     result: result
-//   };
-// })
 
 server.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
   if (err) {
