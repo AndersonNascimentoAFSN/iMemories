@@ -45,9 +45,9 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "mf_drawer",
       filename: "remoteEntry.js",
-      // exposes: {
-      //   "./Drawer": "./src/Drawer",
-      // },
+      exposes: {
+        "./UpdateFavoriteCount": "./src/utils/update-favorite-count/update-favorite-count.ts",
+      },
       remotes: {
         'mf_videos': "mf_videos@http://localhost:3001/remoteEntry.js",
       },

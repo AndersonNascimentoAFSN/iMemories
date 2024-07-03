@@ -47,6 +47,8 @@ class Videos extends HTMLElement {
 
     const favoriteIds = this.getFavoriteIds();
 
+    this.favoriteCountModule(favoriteIds.length || 0)
+
     const videosElements = videos?.map((video) => {
       const isFavorite = favoriteIds.includes(video.videoId);
       return `
@@ -86,6 +88,17 @@ class Videos extends HTMLElement {
         }
       });
     });
+  }
+
+  favoriteCountModule(count: number) {
+    const mainDrawer = document.querySelector('main-drawer')?.shadowRoot;
+    const favoriteCountElement = mainDrawer?.querySelector('#favorite-count') as HTMLElement
+
+    import('mf_drawer/UpdateFavoriteCount').then(({ UpdateFavoriteCount }) => {
+      UpdateFavoriteCount(favoriteCountElement, count)
+    }).catch((error) => {
+      console.error(error.message);
+    })
   }
 }
 

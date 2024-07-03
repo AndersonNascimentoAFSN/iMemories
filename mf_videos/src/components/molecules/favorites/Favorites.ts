@@ -25,6 +25,9 @@ class Favorites extends HTMLElement {
     try {
       const videos = await getVideos();
       const favoriteVideos = videos?.filter(video => this.isFavorite(video.videoId));
+
+      this.favoriteCountModule(favoriteVideos?.length || 0)
+
       this.renderFavoriteVideos(favoriteVideos);
     } catch (error) {
       console.error('Error fetching videos:', error);
@@ -46,6 +49,7 @@ class Favorites extends HTMLElement {
 
   getFavoriteIds(): string[] {
     const favorites = localStorage.getItem('favoriteVideoIds');
+
     return favorites ? JSON.parse(favorites) : [];
   }
 
@@ -84,6 +88,17 @@ class Favorites extends HTMLElement {
     `;
 
     this.shadowRoot!.innerHTML = template;
+  }
+
+  favoriteCountModule(count: number) {
+    const mainDrawer = document.querySelector('main-drawer')?.shadowRoot;
+    const favoriteCountElement = mainDrawer?.querySelector('#favorite-count') as HTMLElement
+
+    import('mf_drawer/UpdateFavoriteCount').then(({ UpdateFavoriteCount }) => {
+      UpdateFavoriteCount(favoriteCountElement, count)
+    }).catch((error) => {
+      console.error(error.message);
+    })
   }
 }
 
