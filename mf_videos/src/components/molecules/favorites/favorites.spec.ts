@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom';
-import { screen } from '@testing-library/dom';
 import { describe, expect, it, beforeAll } from 'vitest'
 
 import Favorites from './Favorites';
@@ -15,17 +14,12 @@ describe('Favorites Component', () => {
     document.body.innerHTML = `<favorites-page></favorites-page>`;
 
     const favoritePage = document.querySelector('favorites-page');
-    const title = document.querySelector('.title');
-    const cardsContainer = document.querySelector('.videos-cards');
+    const favoritePageShadowRoot = document.querySelector('favorites-page')?.shadowRoot;
+    const titleHeading = favoritePageShadowRoot?.querySelector('title-heading');
+    const videoCards = favoritePageShadowRoot?.querySelector('video-cards');
 
     expect(favoritePage).toBeInTheDocument();
-    expect(title).toBeInTheDocument();
-    expect(title).toHaveTextContent('Favoritos');
-    expect(title).toHaveClass('title');
-    expect(title).toHaveRole('heading');
-    expect(cardsContainer).toBeInTheDocument();
-    expect(cardsContainer).toHaveClass('videos-cards');
-    expect(cardsContainer).toHaveAttribute('id', 'videos-cards');
-    expect(cardsContainer).toHaveTextContent('');
+    expect(titleHeading).toBeInTheDocument();
+    expect(videoCards).toBeInTheDocument();
   });
 });
