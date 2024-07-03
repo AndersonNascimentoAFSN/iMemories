@@ -8,13 +8,16 @@ class Videos extends HTMLElement {
   }
 
   async connectedCallback() {
+    this.render()
+  }
+
+  render() {
     const template = `
-    <input-search></input-search>
-    <video-cards></video-cards>
-  `
+      <input-search></input-search>
+      <video-cards></video-cards>
+    `
 
     this.shadowRoot!.innerHTML = template
-
   }
 }
 

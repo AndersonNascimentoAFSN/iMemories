@@ -1,27 +1,23 @@
-// import { createVideos } from '../create-videos'
-// import { getFavoritesVideos } from '../../services/videos'
-
-import './favorites.css'
+import '../../atoms/title/title'
+import '../../atoms/video-cards/video-cards'
 
 class Favorites extends HTMLElement {
   constructor() {
     super()
+    this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
+    this.render()
+  }
 
-    this.innerHTML = `
-        <h1 class="title">Favoritos</h1>
-        <div class="videos-cards" id="videos-cards"></div>
+  render() {
+    const template = `
+      <title-heading text="Favoritos"></title-heading>
+      <video-cards></video-cards>
     `
-
-    // getFavoritesVideos().then(videos => {
-    //   if (videos) {
-    //     createVideos(videos)
-    //   }
-    // }).catch(err => {
-    //   console.log(err)
-    // })
+    
+    this.shadowRoot!.innerHTML = template
   }
 }
 
@@ -30,3 +26,15 @@ if (!customElements.get('favorites-page')) {
 }
 
 export default Favorites
+
+
+// import { createVideos } from '../create-videos'
+// import { getFavoritesVideos } from '../../services/videos'
+
+// getFavoritesVideos().then(videos => {
+//   if (videos) {
+//     createVideos(videos)
+//   }
+// }).catch(err => {
+//   console.log(err)
+// })
