@@ -38,6 +38,7 @@ class Drawer extends HTMLElement {
         padding: 20px;
         border-right: 1px solid var(--foreground-color-light);
         height: 100vh;
+        position: fixed;
       }
 
       ul {
