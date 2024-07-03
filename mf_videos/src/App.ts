@@ -6,7 +6,9 @@ const routes = {
   '/favorites': '<favorites-page></favorites-page>'
 }
 
-const page = routes[window.location.pathname]
+const path = window.location.pathname as keyof typeof routes;
+
+const page = routes?.[path] ? routes[path] : '<title-heading text="Página não encontrada!"></title-heading>';
 
 export const AppVideos = (element: HTMLElement) => {
   element.innerHTML = `

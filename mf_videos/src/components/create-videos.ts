@@ -1,5 +1,5 @@
 import { createFavoritesVideos, getFavoritesVideos, getVideoById } from "../services/videos"
-import { IVideo } from "../types/video"
+import { IVideo } from "../../types/video"
 
 export async function createVideos(
   videos: IVideo[],

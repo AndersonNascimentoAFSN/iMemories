@@ -1,10 +1,9 @@
 export class Links {
-  static addActiveLink(linkId: string) {
-    const allLinks = document.querySelectorAll('.link');
+  static addActiveLink(allLinks:  NodeListOf<Element>, elementToActive: HTMLElement) {
     allLinks.forEach((link) => {
-      link.classList.remove('active');
+      link?.classList?.remove('active');
     });
-    const linkElement = document.getElementById(linkId) as HTMLElement;
-    linkElement.classList.add('active');
+
+    elementToActive?.classList?.add('active');
   }
 }

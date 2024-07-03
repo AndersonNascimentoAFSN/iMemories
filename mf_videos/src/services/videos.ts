@@ -1,4 +1,4 @@
-import { IVideo } from "../types/video";
+import { IVideo } from "../../types/video";
 
 export async function getVideos(query?: { name?: string, maxResults?: number }) {
   try {

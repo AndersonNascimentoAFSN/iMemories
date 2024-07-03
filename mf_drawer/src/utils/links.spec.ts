@@ -12,7 +12,10 @@ describe('Links Class', () => {
   });
 
   it('should add active class to the specified link and remove from others', () => {
-    Links.addActiveLink('link2');
+    const links = document.querySelectorAll('.link');
+    const linkToActive = document.getElementById('link2') as HTMLElement;
+    Links.addActiveLink(links, linkToActive);
+
     const link2 = document.getElementById('link2');
     expect(link2).toHaveClass('active');
 
