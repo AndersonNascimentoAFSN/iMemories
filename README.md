@@ -87,19 +87,48 @@ Aqui está uma visão geral da estrutura de código do projeto:
 iMemories/
 │
 ├── bff/
-│   ├── components/
-│   │   ├── Drawer.ts
-│   │   └── YouTubeVideo.ts
-│   ├── utils/
-│   │   ├── debounce.ts
-│   │   └── links.ts
-│   ├── index.ts
-│   └── styles.css
+│   ├── src/
+│   │   ├── lib/
+│   │   └── types/
+│   ├── Dockerfile
+│   └── tsconfig.json
 │
-├── tests/
-│   ├── Drawer.test.ts
-│   └── YouTubeVideo.test.ts
+├── mf_drawer/
+│   ├── src/
+|   │   ├── components/
+|   │   ├── utils/
+|   │   ├── index.ts
+|   │   ├── index.html
+|   │   ├── index.css
+|   │   ├── reset.css
+│   │   └── App.ts
+│   ├── types/
+│   ├── .babelrc
+│   ├── .gitignore
+│   ├── .babel.config.js
+│   ├── Dockerfile
+│   ├── setupTests.ts
+│   ├── vitest.config.mts
+│   └── webpack.config.js
+|
+├── mf_videos/
+│   ├── src/
+|   │   ├── components/
+|   │   ├── utils/
+|   │   ├── index.ts
+|   │   ├── index.html
+|   │   ├── index.css
+|   │   ├── reset.css
+│   │   └── App.ts
+│   ├── types/
+│   ├── .babelrc
+│   ├── .gitignore
+│   ├── .babel.config.js
+│   ├── Dockerfile
+│   ├── setupTests.ts
+│   ├── vitest.config.mts
+│   └── webpack.config.js
 │
-├── index.html
-├── package.json
+├── .gitignore
+├── .docker-compose.yml
 └── README.md
