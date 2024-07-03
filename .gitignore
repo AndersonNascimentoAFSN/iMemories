@@ -4,3 +4,4 @@ run-api.bash
 server.json
 bff.http
 create-database.bash
+bff/dist
