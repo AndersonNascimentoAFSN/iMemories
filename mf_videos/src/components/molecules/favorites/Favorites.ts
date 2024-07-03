@@ -1,3 +1,4 @@
+import { getVideos } from '../../../services/videos';
 import '../../atoms/title/title'
 import '../../atoms/video-cards/video-cards'
 
@@ -9,6 +10,24 @@ class Favorites extends HTMLElement {
 
   connectedCallback() {
     this.render()
+
+    this.renderVideos()
+  }
+
+  async renderVideos() {
+    const videoCards = this.shadowRoot!.querySelector('video-cards') as HTMLElement
+    const videoCardShadowRoot = videoCards.shadowRoot
+    const videoCardContainer = videoCardShadowRoot!.querySelector('#video-cards') as HTMLElement
+
+    const videos = await getVideos()
+
+    const videosElements = videos?.map((video) => {
+      return `
+        <video-card videoId="${video.videoId}" isFavorite="true"></video-card>
+      `
+    }).join('')
+
+    videoCardContainer.innerHTML = videosElements || '<title-heading text="No videos found"></title-heading>'
   }
 
   render() {
@@ -16,7 +35,7 @@ class Favorites extends HTMLElement {
       <title-heading text="Favoritos"></title-heading>
       <video-cards></video-cards>
     `
-    
+
     this.shadowRoot!.innerHTML = template
   }
 }

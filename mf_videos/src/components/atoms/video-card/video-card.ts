@@ -51,6 +51,10 @@ class VideoCard extends HTMLElement {
       font-size: 1rem;
       color: rgb(33, 33, 33);
     }
+
+    .favorite-button:hover {
+      background-color: rgb(100, 181, 246);
+    }
   `
 
     const template = `
