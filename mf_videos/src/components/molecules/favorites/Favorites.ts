@@ -22,24 +22,21 @@ class Favorites extends HTMLElement {
     this.videoCardsShadowRoot = videoCards.shadowRoot;
     this.videoCardsContainer = this.videoCardsShadowRoot!.querySelector('#video-cards') as HTMLElement;
 
-    try {
-      const videos = await getVideos();
-      const favoriteVideos = videos?.filter(video => this.isFavorite(video.videoId));
+    const favoritesIds = this.getFavoriteIds()
 
-      this.favoriteCountModule(favoriteVideos?.length || 0)
+    const favoriteVideos = favoritesIds?.filter(videoId => this.isFavorite(videoId));
 
-      this.renderFavoriteVideos(favoriteVideos);
-    } catch (error) {
-      console.error('Error fetching videos:', error);
-    }
+    this.favoriteCountModule(favoriteVideos?.length || 0)
+
+    this.renderFavoriteVideos(favoriteVideos);
   }
 
-  renderFavoriteVideos(videos: IVideo[] | undefined) {
+  renderFavoriteVideos(favoritesIds: string[]) {
     this.videoCardsContainer!.innerHTML = '';
 
-    const videosElements = videos?.map((video) => {
+    const videosElements = favoritesIds?.map((id) => {
       return `
-        <video-card videoId="${video.videoId}" isFavorite="true"></video-card>
+        <video-card videoId="${id}" isFavorite="true"></video-card>
       `;
     }).join('');
 
