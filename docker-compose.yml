@@ -1,20 +1,20 @@
 services:
-  db:
-    image: mysql:8.0.30-debian
-    container_name: imemories-bff
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: senha@123
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-      - ./.docker/mysql:/docker-entrypoint-initdb.d
-    cap_add:
-      - SYS_NICE
-    privileged: true
-    networks:
-      - imemories-network
+  # db:
+  #   image: mysql:8.0.30-debian
+  #   container_name: imemories-bff
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: senha@123
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - db-data:/var/lib/mysql
+  #     - ./.docker/mysql:/docker-entrypoint-initdb.d
+  #   cap_add:
+  #     - SYS_NICE
+  #   privileged: true
+  #   networks:
+  #     - imemories-network
 
   api:
     container_name: bff
