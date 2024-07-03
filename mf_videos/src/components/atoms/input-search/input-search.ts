@@ -13,6 +13,12 @@ class InputSearch extends HTMLElement {
         margin-bottom: 1rem;
         width: 50%;
       }
+
+      @media (max-width: 600px) {
+        .search-video {
+          width: 80%;
+        }
+      }
   `
 
     const template = `
