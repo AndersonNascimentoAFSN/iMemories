@@ -67,15 +67,46 @@ Antes de começar, certifique-se de ter o seguinte instalado em sua máquina:
     ```
   Observação: "Drawer Component" é o texto do describe do texto. Pode ser utilizado também o texto do it.
 
-## Como Rodar o Projeto
+## Como Rodar o Projeto localmente
 
-1. Dentro do diretório principal (IMemories) execute o comando :
+1. Configuração de variáveis de ambiente no arquivo .env de cada uma das aplicações
+bff:
+```plaintext
+ API_BFF_PORT="3003"
+ YOUTUBE_API_KEY=""
+```
+mf_drawer:
+```plaintext
+    APP_URL="http://localhost:3000/"
+    APP_PORT="3000"
+    APP_MF_VIDEOS="mf_videos@http://localhost:3001/remoteEntry.js"
+```
+
+mf_videos:
+```plaintext
+    APP_URL="http://localhost:3001/"
+    APP_PORT="3001"
+    APP_MF_DRAWER="mf_videos@http://localhost:3000/remoteEntry.js"
+    API_BFF="http://localhost:3003"
+```
+2. Dentro de cada uma das aplicações executar os comandos:
+ ```bash
+    npm install
+    npm build
+    npm start
+```
+
+## Como Rodar o Projeto no docker
+
+1. Dentro do arquivo docker-compose.yml defina a API_KEY do Youtube na variável de ambiente "YOUTUBE_API_KEY".
+ 
+3. Dentro do diretório principal (IMemories) execute o comando:
     ```bash
      docker compose up --build
     ```
 
-2. Abra seu navegador e acesse:
-    ```
+4. Abra seu navegador e acesse:
+    ```plaintext
     http://localhost:3000
     ```
 
