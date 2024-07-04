@@ -69,7 +69,8 @@ Antes de começar, certifique-se de ter o seguinte instalado em sua máquina:
 
 ## Como Rodar o Projeto localmente
 
-1. Configuração de variáveis de ambiente no arquivo .env de cada uma das aplicações
+1. Configuração de variáveis de ambiente no arquivo .env de cada uma das aplicações. Você deve gerar sua própria API_KEY do youtube nesse [link](https://developers.google.com/youtube/v3/getting-started?hl=pt-br)
+
 bff:
 ```plaintext
  API_BFF_PORT="3003"
