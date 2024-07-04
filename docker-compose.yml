@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       NODE_ENV: production
-      YOUTUBE_API_KEY: AIzaSyCW_neUSYaf0gUZojgAnXVQPSbzIP_nauU
+      YOUTUBE_API_KEY: AIzaSyCt4TcMXTztv5Bxq9WY6RkZV8zN70xRU0A
     networks:
       - imemories-network
     ports:
@@ -37,6 +37,7 @@ services:
     environment:
       APP_HOST: 3000
       APP_MF_VIDEOS: mf_videos@http://localhost:3001/remoteEntry.js
+      API_BFF: http://localhost:3333
     networks:
       - imemories-network
 
@@ -51,6 +52,7 @@ services:
     environment:
       APP_HOST: 3001
       APP_MF_VIDEOS: mf_drawer@http://localhost:3000/remoteEntry.js
+      API_BFF: http://localhost:3333
     networks:
       - imemories-network
 
