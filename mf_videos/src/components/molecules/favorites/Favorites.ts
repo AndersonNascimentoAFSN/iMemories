@@ -1,5 +1,3 @@
-import { IVideo } from '../../../../types/video';
-import { getVideos } from '../../../services/videos';
 import '../../atoms/title/title';
 import '../../atoms/video-cards/video-cards';
 

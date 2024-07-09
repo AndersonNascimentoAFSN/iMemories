@@ -6,8 +6,6 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-RUN apt-get update && apt-get install -y curl
-
 COPY . .
 
 RUN npm run build
