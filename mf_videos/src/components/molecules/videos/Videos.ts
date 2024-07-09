@@ -26,14 +26,14 @@ class Videos extends HTMLElement {
     this.inputSearchShadowRoot = this.shadowRoot!.querySelector('input-search')?.shadowRoot;
     this.inputSearch = this.inputSearchShadowRoot?.querySelector('#search-video');
 
-    this.inputSearch?.addEventListener('input', debounce(() => this.loaderVideos(this.inputSearch?.value), 2000));
+    this.inputSearch?.addEventListener('input', debounce(() => this.loaderVideos({ name: this.inputSearch?.value }), 2000));
   }
 
   connectedCallback() {
-    this.loaderVideos('');
+    this.loaderVideos({ name: '' });
   }
 
-  async loaderVideos(query?: string) {
+  async loaderVideos(query?: { name?: string, maxResults?: number }) {
     try {
       const videos = await getVideos(query);
       this.renderVideos(videos);
@@ -84,7 +84,7 @@ class Videos extends HTMLElement {
         const videoId = videoCard.getAttribute('videoId');
         if (videoId) {
           this.toggleFavoriteId(videoId);
-          this.loaderVideos(this.inputSearch?.value);
+          this.loaderVideos({ name: this.inputSearch?.value });
         }
       });
     });
