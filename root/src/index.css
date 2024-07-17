@@ -1,0 +1,64 @@
+:root {
+  --primary-color: #007aff;
+  --background-color: rgb(144, 202, 249);
+  --background-color-light: #ffffff;
+  --background-card: rgb(236, 244, 251);
+
+  --hover-background-color: rgb(100, 181, 246);
+  
+  --foreground-color: rgb(33, 33, 33);
+  --foreground-color-light:rgb(117, 117, 117);
+}
+
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #ffff;
+}
+
+.container {
+  display: flex;
+  gap: 0.5rem;
+  height: 100vh;
+  width: 100%;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  margin-left: 190px;
+}
+
+@media (max-width: 600px) {
+  .main {
+    margin: 0;
+  }
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(236, 244, 251); /* Cor do fundo da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(144, 202, 249); /* Cor da barra de rolagem */
+  border-radius: 6px; /* Borda arredondada */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:#007aff; /* Cor da barra de rolagem ao passar o mouse */
+}
+
+* {
+  scrollbar-width: thin; /* Espessura da barra de rolagem */
+  scrollbar-color: rgb(144, 202, 249) rgb(236, 244, 251); /* Cor da barra de rolagem e do fundo */
+}

@@ -1,4 +1,4 @@
-export class DynamicContentRoute extends HTMLElement {
+export class BrowserRoute extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -9,11 +9,6 @@ export class DynamicContentRoute extends HTMLElement {
     this.render();
     window.addEventListener('popstate', this.handleRouteChange);
     window.addEventListener('hashchange', this.handleRouteChange);
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('popstate', this.handleRouteChange);
-    window.removeEventListener('hashchange', this.handleRouteChange);
   }
 
   handleRouteChange() {
@@ -38,7 +33,6 @@ export class DynamicContentRoute extends HTMLElement {
         <title-heading text="Página não encontrada!"></title-heading>
       `;
     }
-
   }
 
   async loadingModules() {
@@ -60,6 +54,6 @@ export class DynamicContentRoute extends HTMLElement {
   }
 }
 
-if (!customElements.get('dynamic-content-route')) {
-  customElements.define('dynamic-content-route', DynamicContentRoute);
+if (!customElements.get('browser-route')) {
+  customElements.define('browser-route', BrowserRoute);
 }

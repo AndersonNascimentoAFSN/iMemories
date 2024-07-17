@@ -52,7 +52,6 @@ module.exports = (_, argv) => ({
         './App': './src/App.ts',
         './AppVideosPage': './src/pages/app-videos-page/AppVideosPage.ts',
         './AppFavoritesPage': './src/pages/app-favorites-page/AppFavoritesPage.ts',
-        './AppFavoritesPage': './src/pages/app-favorites-page/AppFavoritesPage.ts',
       },
       shared: {
         ...deps,

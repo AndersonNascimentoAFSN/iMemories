@@ -118,7 +118,7 @@ class Drawer extends HTMLElement {
     event.preventDefault();
     const target = event?.target as HTMLAnchorElement;
     const href = target.getAttribute('href');
-
+    
     if (target) {
       window.history.pushState({}, '', href);
       window.dispatchEvent(new Event('popstate'));

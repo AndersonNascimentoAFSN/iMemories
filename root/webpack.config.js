@@ -2,11 +2,9 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const Dotenv = require('dotenv-webpack');
 const deps = require("./package.json").dependencies;
-require('dotenv').config({ path: './.env' }); 
-
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "http://localhost:8080/",
   },
 
   resolve: {
@@ -14,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3000,
+    port: 8080,
     historyApiFallback: true,
   },
 
@@ -43,12 +41,13 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "mf_drawer",
+      name: "root",
       filename: "remoteEntry.js",
-      exposes: {
-        "./UpdateFavoriteCount": "./src/utils/update-favorite-count/update-favorite-count.ts",
-        "./AppDrawer": "./src/App.ts",
+      remotes: {
+        'mf_drawer': "mf_drawer@http://localhost:3000/remoteEntry.js",
+        'mf_videos': "mf_videos@http://localhost:3001/remoteEntry.js",
       },
+      exposes: {},
       shared: {
         ...deps,
       },
